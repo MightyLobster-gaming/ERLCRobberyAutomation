@@ -6,17 +6,15 @@ Script Runner is a simple Python application that provides a graphical interface
 Installation
 Clone the repository:
 
-bash
-Copy code
-git clone https://github.com/yourusername/script-runner.git
-Navigate to the project directory:
+``Copy code
+git clone https:`//github.com/yourusername/script-runner.git
+Navigate to the project directory:``
 
-bash
+``
 Copy code
 cd script-runner
-Create and activate a virtual environment (optional but recommended):
+Create and activate a virtual environment (optional but recommended):``
 
-bash
 Copy code
 python -m venv venv
 source venv/bin/activate  # On Unix/Linux
