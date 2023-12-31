@@ -3,7 +3,6 @@
 import tkinter as tk
 from tkinter import scrolledtext
 import time
-import numpy as np
 import pyautogui
 
 class LockpickScript:
@@ -136,14 +135,15 @@ class ATMRobberyScript:
     
     # Finds closest colour in the list if colour does not match exactly
     def findClosestInList(self, targetColour):
-        targetArray = np.array(targetColour)
-        coloursArray = np.array(self.colours)
-        differences = np.abs(coloursArray - targetArray)
-        if np.any(differences > 10):
+        targetArray = list(targetColour)
+        coloursArray = [list(colour) for colour in self.colours]
+
+        differences = [abs(a - b) for a, b in zip(coloursArray, targetArray)]
+        if any(max(diff) > 10 for diff in differences):
             output = None
         else:
-            distances = np.linalg.norm(differences, axis=1)
-            output = np.argmin(distances)
+            distances = [sum(d ** 2 for d in diff) ** 0.5 for diff in differences]
+            output = distances.index(min(distances))
         return output
 
     def run(self):
