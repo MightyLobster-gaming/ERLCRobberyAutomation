@@ -7,10 +7,10 @@ To install the required packages for this project, you can use the following ste
 First make sure you have python 3.X or later installed.  
 
 Clone the repository to your local machine:  
-Copy code - ``git clone https://github.com/your-username/your-project.git``  
+Copy code - ``git clone https://github.com/MightyLobster-gaming/ERLCRobberyAutomation.git``  
 
 Navigate to the project directory:  
-Copy code - ``cd your-project``  
+Copy code - ``cd ERLCRobberyAutomation``  
 
 Install the necessary packages:  
 Copy code - ``pip install -r requirements.txt``    
