@@ -1,4 +1,4 @@
-# ERLCRobberyAutomation
+# ERLCRobberyAutomation V1
   
 ERLCAutoRobberies is a script menu with automation currently for the ATM robbery, as well as the lockpick house robbery.  
 
