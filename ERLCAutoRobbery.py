@@ -1,3 +1,5 @@
+# V1 Released 31/12/23
+
 import tkinter as tk
 from tkinter import scrolledtext
 import time
