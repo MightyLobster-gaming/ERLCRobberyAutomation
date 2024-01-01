@@ -1,3 +1,4 @@
 numpy==1.26.2
 pyautogui==0.9.54
+pydirectinput==1.0.4
 tkinter==8.6
