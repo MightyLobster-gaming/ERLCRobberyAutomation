@@ -4,7 +4,6 @@
 import tkinter as tk
 from tkinter import scrolledtext
 import time
-import numpy as np
 import pyautogui
 import pydirectinput
 
