@@ -1,9 +1,12 @@
-# V1 Released 31/12/23
+#!/usr/bin/python3.11
+# V1.2 Released 1/1/2024
 
 import tkinter as tk
 from tkinter import scrolledtext
 import time
+import numpy as np
 import pyautogui
+import pydirectinput
 
 class LockpickScript:
     def __init__(self, app):
@@ -25,7 +28,7 @@ class LockpickScript:
                 break
             
             # Displaying the current pin being processed
-            self.app.update_output(f"Pin {self.pinLocations.index(pin)}\n")
+            self.app.update_output(f"Pin {self.pinLocations.index(pin)+1}\n")
 
             # Flag indicating whether the pin has been clicked or not
             pinNotClicked = True
@@ -34,7 +37,7 @@ class LockpickScript:
             while pinNotClicked:
                 # Checking if the pixels at two specific locations on the pin are similar and have a certain color intensity
                 if pyautogui.pixel(pin, 539) == pyautogui.pixel(pin, 541) > (50, 50, 50):
-                    pyautogui.click()
+                    pydirectinput.click()
                     self.app.update_output("Clicked\n")
                     pinNotClicked = False
                     time.sleep(0.5)
@@ -86,7 +89,7 @@ class ATMRobberyScript:
             (255,85,187), # 6dc
             (255,85,162), # cc1
             (255,85,136), # 375
-            (255,85,110), # 9fe
+            (255,85,110) # 9fe
             ]
 
         # List of pixel locations to click based on the colours
@@ -130,7 +133,7 @@ class ATMRobberyScript:
             [1145,625],
             [1145,655],
             [1145,690],
-            [1145,722],
+            [1145,722]
         ]
     
     # Finds closest colour in the list if colour does not match exactly
@@ -138,7 +141,8 @@ class ATMRobberyScript:
         targetArray = list(targetColour)
         coloursArray = [list(colour) for colour in self.colours]
 
-        differences = [abs(a - b) for a, b in zip(coloursArray, targetArray)]
+        differences = [[abs(a - b) for a, b in zip(color, targetArray)] for color in coloursArray]
+
         if any(max(diff) > 10 for diff in differences):
             output = None
         else:
@@ -158,7 +162,7 @@ class ATMRobberyScript:
         waitTime = 1
 
         # Main ATM hacking loop
-        while not errors >= errorLimit :
+        while errors < errorLimit :
             target = None
             
             # Looping through a specific range of pixels to find the target colour
@@ -175,7 +179,7 @@ class ATMRobberyScript:
             if target == None:
                 self.app.update_output("Target code not found\n")
                 errors += 1
-                self.app.update_output(f"Attempts left: {2 - errors}\n")
+                self.app.update_output(f"Attempts left: {2-errors}\n")
                 time.sleep(waitTime)
             else:
                 # Clicking on the specified location if the target colour is found
@@ -183,7 +187,7 @@ class ATMRobberyScript:
                 while notClicked:
                     # Click if specified location matches colour
                     if pyautogui.pixel(self.locations[target][0],self.locations[target][1]) == self.colours[target]:
-                        pyautogui.click()
+                        pydirectinput.click()
                         self.app.update_output("Clicked\n")
                         notClicked = False
                 time.sleep(0.5)
@@ -260,11 +264,8 @@ class AutoRobbery:
         # Add a script name header to the output
         self.update_output(f"Running {script_name}:\n")
 
-        try:
-            # Call the script's run method
-            script_instance.run()
-        except Exception as e:
-            self.update_output(f"Error: {e}\n")
+        # Call the script's run method
+        script_instance.run()
 
         # Set the execution status to False when the script finishes
         self.is_running = False
