@@ -35,7 +35,7 @@ class LockpickScript:
             # Looping until the pin is successfully clicked
             while pinNotClicked:
                 # Checking if the pixels at two specific locations on the pin are similar and have a certain color intensity
-                if pyautogui.pixel(pin, 539) == pyautogui.pixel(pin, 541) > (50, 50, 50):
+                if pyautogui.pixel(pin, 530) == pyautogui.pixel(pin, 550) > (50, 50, 50):
                     pydirectinput.click()
                     self.app.update_output("Clicked\n")
                     pinNotClicked = False
